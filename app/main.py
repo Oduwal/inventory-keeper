@@ -46,7 +46,7 @@ HTTPS_ONLY = os.getenv("HTTPS_ONLY", "1") not in {"0", "false", "False", "no", "
 app.add_middleware(
     SessionMiddleware,
     secret_key=SESSION_SECRET,
-    https_only=HTTPS_ONLY,
+    https_only=False,
     same_site="lax",
 )
 
