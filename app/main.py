@@ -136,6 +136,24 @@ def require_admin_or_403(user: User) -> HTMLResponse | None:
 def login_form(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "error": None})
 
+@app.get("/create-admin")
+def create_admin(db: Session = Depends(get_db)):
+    from passlib.hash import bcrypt
+
+    existing = db.query(User).filter(User.username == "admin").first()
+    if existing:
+        return {"message": "Admin already exists"}
+
+    admin = User(
+        username="admin",
+        full_name="Administrator",
+        role="ADMIN",
+        password_hash=bcrypt.hash("admin123")
+    )
+
+    db.add(admin)
+    db.commit()
+    return {"message": "Admin created"}
 
 @app.post("/login", response_class=HTMLResponse)
 def login(
