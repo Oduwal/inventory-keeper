@@ -13,7 +13,7 @@ import bcrypt as bcrypt_lib
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
-from database import Base, engine, get_db
+from .database import Base, engine, get_db
 from models import Item, Transaction, User, Delivery
 from services import (
     record_transaction,
