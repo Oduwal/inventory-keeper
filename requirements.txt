@@ -5,16 +5,6 @@ Jinja2
 python-multipart
 pandas
 openpyxl
-psycopg[binary]
 psycopg2-binary
 passlib[bcrypt]
 itsdangerous
-fastapi
-uvicorn
-SQLAlchemy
-Jinja2
-python-multipart
-pandas
-openpyxl
-psycopg[binary]
-psycopg2-binary
