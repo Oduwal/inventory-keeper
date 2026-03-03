@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>New Delivery</h1>
+
+<form class="form" method="post" action="/deliveries/new">
+    <label>Agent</label>
+    <select name="agent_id" required>
+        {% for a in agents %}
+        <option value="{{ a.id }}">{{ a.username }}{% if a.full_name %} - {{ a.full_name }}{% endif %}</option>
+        {% endfor %}
+    </select>
+
+    <label>Customer name</label>
+    <input name="customer_name" required />
+
+    <label>Customer phone</label>
+    <input name="customer_phone" />
+
+    <label>Address</label>
+    <input name="address" />
+
+    <label>Note</label>
+    <input name="note" />
+
+    <div class="card">
+        <h2>Items</h2>
+        <div id="lines"></div>
+        <button type="button" class="button" onclick="addLine()">Add Item</button>
+    </div>
+
+    <button class="primary" type="submit">Create Delivery</button>
+</form>
+
+<script>
+const items = {{ items | tojson }};
+function addLine(){
+  const wrap = document.getElementById("lines");
+  const div = document.createElement("div");
+  div.className = "row";
+  const sel = document.createElement("select");
+  sel.name = "item_id";
+  items.forEach(i => {
+    const o = document.createElement("option");
+    o.value = i.id;
+    o.textContent = i.name;
+    sel.appendChild(o);
+  });
+  const qty = document.createElement("input");
+  qty.type = "number";
+  qty.min = "1";
+  qty.value = "1";
+  qty.name = "quantity";
+  div.appendChild(sel);
+  div.appendChild(qty);
+  wrap.appendChild(div);
+}
+addLine();
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My Deliveries</h1>
+
+<table class="table">
+    <tr><th>ID</th><th>Customer</th><th>Status</th><th>Created</th></tr>
+    {% for d in rows %}
+    <tr>
+        <td><a href="/deliveries/{{ d.id }}">#{{ d.id }}</a></td>
+        <td>{{ d.customer_name }}</td>
+        <td><span class="pill">{{ d.status }}</span></td>
+        <td>{{ d.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

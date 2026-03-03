@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.pyc
+inventory.db
+.env
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local DB / env
+inventory.db
+.env
+
+# VS / VS Code
+.vs/
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
